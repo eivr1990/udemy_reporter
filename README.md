@@ -24,5 +24,5 @@ A new Udemy reporter browser extension for Brave and Chrome has arrived!
 Download the extension from <a href="https://github.com/eivr1990/udemy_reporter/releases/download/udemy/Udemy-Progress-Reporter-v2.0.0.zip">here</a> 👈 and install it as an unpacked extension from either Chrome or Brave browsers.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
-- [Javascript](https://www.javascript.com/) - Language Programming
-- [Circular Progress Bar](https://github.com/tomik23/circular-progress-bar) - Some Javascript code already developed to create easy circular progress bars
+- [Javascript](https://www.javascript.com/) - Programming language
+- [Circular Progress Bar](https://github.com/tomik23/circular-progress-bar) - Some Javascript code already developed to easily create circular progress bars
