@@ -25,3 +25,4 @@ Download the extension from <a href="https://github.com/eivr1990/udemy_reporter/
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 - [Javascript](https://www.javascript.com/) - Language Programming
+- [Circular Progress Bar](https://github.com/tomik23/circular-progress-bar) - Some Javascript code already developed to create easy circular progress bars
