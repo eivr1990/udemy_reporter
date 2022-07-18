@@ -8,7 +8,7 @@
 
 ---
 
-<p align="center"> A tool to help users know how much progress has been in the Udemy platform during during the current month, including all registered courses.
+<p align="center"> A tool to help users know how much progress has been made in the Udemy platform during the current month, including all registered courses.
     <br> 
 </p>
 
