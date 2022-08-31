@@ -6,7 +6,7 @@ chrome.runtime.onInstalled.addListener( (details) => {
             udemy: {
                 courses: {},
                 previousMonthProgress: 0,
-                endDate: (new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).toDateString())                
+                endDate: (new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1).toDateString())                
             }
         })
     }
@@ -68,7 +68,7 @@ chrome.tabs.onUpdated.addListener( (tabId, changeInfo, tab) => {
     }
     
     if (changeInfo.url) {
-        if (changeInfo.url.indexOf("softtek.udemy.com/course/") > 0 && changeInfo.url.indexOf("#overview") > 0) {                      
+        if (changeInfo.url.indexOf("softtek.udemy.com/course/") > 0 && changeInfo.url.indexOf("#") > 0) {                      
             sendMessage(tabId)
         }
     }

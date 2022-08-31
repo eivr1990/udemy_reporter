@@ -10,7 +10,7 @@ async function updateStorage(progress) {
             if (currentDate > new Date(endDate)) {
                 // currentDate = new Date(currentDate.innerText)
         
-                endDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).toDateString()
+                endDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1).toDateString()
                 udemy.endDate = endDate
         
                 totalProgress = 0    
