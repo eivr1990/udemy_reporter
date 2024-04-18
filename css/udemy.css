@@ -1,0 +1,53 @@
+main {
+    height: 250px;
+    width: 550px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    background-color: #322A41; 
+}
+
+#graphicalProgress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+}
+
+#progressInfo {
+    width: 60%;
+}
+
+#progressInfo h3 {
+    text-align: center;
+}
+
+#progressMessage {
+    font-weight: lighter;
+    padding-top: 10%;
+    color: white;
+    font-size: 20px;
+}
+
+#totalProgress {
+    text-align: center;
+    color: #00F7F7;
+    font-size: 50px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+body {
+    margin: 0;
+}
+
+.pie {
+    padding-left: 10%;
+}
+
+#congrats {
+    margin: 0;
+    padding-top: 15px;
+    color: #ADFF2F;
+    font-size: 28px;
+}
