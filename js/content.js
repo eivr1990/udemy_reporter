@@ -5,51 +5,51 @@ async function updateStorage(progress) {
             udemy = result.udemy
             courses = udemy.courses
             endDate = udemy.endDate
-        
+
             // if (new Date(currentDate.innerText) > new Date(endDate)) {
             if (currentDate > new Date(endDate)) {
                 // currentDate = new Date(currentDate.innerText)
-        
+
                 endDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1).toDateString()
                 udemy.endDate = endDate
-        
-                totalProgress = 0    
+
+                totalProgress = 0
                 for (const [course, info] of Object.entries(courses)) {
                     totalProgress += parseInt(info.currentProgress) - parseInt(info.previousProgress)
                 }
                 udemy.previousMonthProgress = totalProgress
-        
+
                 for (const [course, info] of Object.entries(courses)) {
                     courses[course].previousProgress = info.currentProgress
                 }
                 udemy.courses = courses
-        
-                if (!(document.title in courses)) {        
+
+                if (!(document.title in courses)) {
                     courses[document.title] = {
                         "currentProgress": progress,
                         "previousProgress": progress
-                    }            
+                    }
                 }
-                    
+
                 chrome.storage.local.set({udemy: udemy})
             } else {
-                if (!(document.title in courses)) {        
+                if (!(document.title in courses)) {
                     courses[document.title] = {
                         "currentProgress": progress,
                         "previousProgress": progress
-                    }            
+                    }
                     udemy.courses = courses
-        
+
                     chrome.storage.local.set({udemy: udemy})
-                } else {            
+                } else {
                     courses[document.title].currentProgress = progress
-                    udemy.courses = courses        
-        
+                    udemy.courses = courses
+
                     chrome.storage.local.set({udemy: udemy})
                 }
             }
-            
-            
+
+
             resolve ("updated storage")
         })
     })
@@ -80,23 +80,39 @@ function addTime() {
         setTimeout(() => {
             let total = 0
 
-            let sections = document.querySelectorAll(".section--section-heading--2k6aW")
-    
-            sections.forEach(function(section) {    
+            let sections = document.querySelectorAll(".section--section-heading--gDf8W")
+
+            sections.forEach(function(section) {
                 if(section.querySelector("button").getAttribute("aria-expanded") == 'false') {
                     section.click()
                 }
             })
-    
-    
-            let videos = document.querySelectorAll(".curriculum-item-link--curriculum-item--KX9MD")
-    
+
+
+            let videos = document.querySelectorAll(".curriculum-item-link--curriculum-item--OVP5S")
+
             videos.forEach(function(video) {
                 if (video.querySelector("input").checked) {
-                    let mins = video.querySelectorAll(".curriculum-item-link--metadata--e17HG")
-                    if (mins.length > 0) {            
-                        total += parseInt(mins[0].textContent.replace("min",""))
-                    }
+                    let metadata = video.querySelectorAll(".curriculum-item-link--metadata--XK804")
+                    if (metadata.length > 0) {            
+                        let regExp = metadata[0].textContent.includes("hr") ? metadata[0].textContent.includes("min") ? /(\d+)hr (\d+)min/: /(\d+)hr/: /(\d+)min/
+
+                        if (regExp.exec(metadata[0].textContent).length == 3) {
+                            let hours = parseInt(regExp.exec(metadata[0].textContent)[1])
+                            let minutes = parseInt(regExp.exec(metadata[0].textContent)[2])
+                            total += hours * 60 + minutes
+                        } else {
+                            if (metadata[0].textContent.includes("hr")) {
+                                let hours = parseInt(regExp.exec(metadata[0].textContent)[1])
+                                total += hours * 60
+                            } else {
+                                let minutes = parseInt(regExp.exec(metadata[0].textContent)[1])
+                                total += minutes
+                                let title = video.querySelector("[data-purpose='item-title']").textContent
+                                console.log(title + " " + metadata[0].textContent)
+                            }
+                        }
+                    }                    
                 }
             })
 
@@ -110,9 +126,9 @@ function updateCourse() {
         setTimeout(() => {
             waitForElm("[data-purpose='curriculum-section-container']").then( (elm) => {
                 addTime().then( (progress) => {
-                    updateStorage(progress).then( (result) => {                        
+                    updateStorage(progress).then( (result) => {
                         resolve ("updated course")
-                    })                
+                    })
                 })
             })
         })
@@ -128,7 +144,7 @@ chrome.runtime.onMessage.addListener( (message, sender, sendResponse) => {
                 }
             )
         })
-    
+
         return true
     }
 })

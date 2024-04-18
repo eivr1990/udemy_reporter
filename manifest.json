@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Udemy Progress Tracker",
-    "version": "2.0.1",
+    "version": "2.1.0",
     "description": "Helps get track of Udemy courses progress",
     "background": {
         "service_worker": "js/background.js"
@@ -14,10 +14,6 @@
         {
             "matches": ["https://softtek.udemy.com/course/*"],
             "js": ["js/content.js"]
-        },
-        {
-            "matches": ["https://softtek.udemy.com/*"],
-            "js": ["js/change-icon.js"]
         }
     ],
     "permissions": [
